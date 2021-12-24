@@ -8,7 +8,8 @@
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
-        "plugin:import/recommended"
+        "plugin:import/recommended",
+        "airbnb"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -23,6 +24,12 @@
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "import/prefer-default-export": "off",
-        "linebreak-style": 0
+        "linebreak-style": 0,
+        "react/function-component-definition": [
+            2,
+            {
+              "namedComponents": "function-declaration"
+            }
+          ]
     }
 }
