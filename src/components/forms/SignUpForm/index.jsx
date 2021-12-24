@@ -1,4 +1,5 @@
 import React from 'react';
+import StyledInput from './components/Input';
 
 export function SignUpForm() {
   return (
@@ -6,11 +7,12 @@ export function SignUpForm() {
       <h1>Sign Up</h1>
 
       <form className="form">
-        <input
+        <StyledInput placeholder="user name" />
+        {/* <input
           className="input"
           name="username"
           placeholder="user name"
-        />
+        /> */}
         <input
           className="input"
           name="email"
