@@ -7,7 +7,6 @@ import StyledForm from './Form';
 export const SignUpForm = () => (
   <StyledFormContainer>
     <h1>Sign Up</h1>
-
     <StyledForm>
       <StyledInput placeholder="user name" />
       <StyledInput placeholder="email" />

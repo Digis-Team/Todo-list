@@ -5,9 +5,9 @@ const StyledButton = styled.button`
   width: 120px;
   height: 40px;
   font-size: large;
-  background-color: rgb(124, 161, 230);
-  border: solid 1px rgb(201, 201, 201);
-  color: rgb(48, 42, 34);
+  background-color: #7ca1e6  ;
+  border: solid 1px #c9c9c9;
+  color: #302a22;
   &:hover {
     color: white;
     cursor:pointer;

@@ -6,7 +6,7 @@ const StyledInput = styled.input`
   margin: 10px;
   padding: 2px;
   border: none;
-  border-bottom: solid 1px rgb(201, 201, 201);
+  border-bottom: solid 1px #c9c9c9;
 `;
 
 export default StyledInput;
