@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   margin: 25px 0 15px 0;
   width: 120px;
   height: 40px;
@@ -13,4 +13,3 @@ const StyledButton = styled.button`
     cursor:pointer;
   }
 `;
-export default StyledButton;

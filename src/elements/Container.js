@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledFormContainer = styled.div`
+export const StyledFormContainer = styled.div`
   width: 50%;
   text-align: center;
   position: relative;
@@ -13,5 +13,3 @@ const StyledFormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   `;
-
-export default StyledFormContainer;
