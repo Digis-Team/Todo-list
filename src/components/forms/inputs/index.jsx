@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { StyledInput, StyledError } from '../../../elements';
 
 export const FormInput = ({
-  placeholder, type, onChange, errorMessage, required,
+  placeholder, type, onChange, errorMessage, value, required,
 }) => (
   <div>
     <StyledInput
@@ -11,6 +11,7 @@ export const FormInput = ({
       placeholder={placeholder}
       required={required}
       onChange={onChange}
+      value={value}
     />
     <StyledError>{errorMessage}</StyledError>
   </div>
@@ -18,6 +19,7 @@ export const FormInput = ({
 
 FormInput.defaultProps = {
   errorMessage: '',
+  value: '',
   required: true,
 };
 
@@ -26,5 +28,6 @@ FormInput.propTypes = {
   type: propTypes.string.isRequired,
   onChange: propTypes.func.isRequired,
   errorMessage: propTypes.string,
+  value: propTypes.string,
   required: propTypes.bool,
 };
