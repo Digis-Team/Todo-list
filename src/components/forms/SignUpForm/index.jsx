@@ -19,41 +19,41 @@ export const SignUpForm = () => {
     errorPasswordMessage: '',
     errorConfirmPassMessage: '',
   });
-  const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({
     name: '',
     email: '',
+    password: '',
   });
 
   const onNameChange = (event) => {
     const nameValue = event.target.value;
-    setUserInfo(userInfo.name = nameValue);
     if (!nameValue) {
-      setErrors(errors.errorNameMessage = shortName);
+      setErrors({ ...errors, errorNameMessage: shortName });
     } else {
-      setErrors(errors.errorNameMessage = '');
+      setErrors({ ...errors, errorNameMessage: '' });
     }
+    setUserInfo({ ...userInfo, name: nameValue });
   };
 
   const onEmailChange = (event) => {
     const emailValue = event.target.value;
-    setUserInfo(userInfo.email = emailValue);
+    setUserInfo({ ...userInfo, email: emailValue });
     if (EMAIL_REGEX.test(emailValue)) {
-      setErrors(errors.errorEmailMessage = '');
+      setErrors({ ...errors, errorEmailMessage: '' });
     } else {
-      setErrors(errors.errorEmailMessage = wrongEmail);
+      setErrors({ ...errors, errorEmailMessage: wrongEmail });
     }
   };
 
   const onPasswordChange = (event) => {
     const passValue = event.target.value;
-    setPassword(passValue);
+    setUserInfo({ ...userInfo, password: passValue });
     if (passValue.length < 8) {
-      setErrors(errors.errorPasswordMessage = shortPassword);
+      setErrors({ ...errors, errorPasswordMessage: shortPassword });
     } else if (passValue === passValue.toLowerCase()) {
-      setErrors(errors.errorPasswordMessage = needsUpperCasePassword);
+      setErrors({ ...errors, errorPasswordMessage: needsUpperCasePassword });
     } else if (passValue === passValue.toUpperCase()) {
-      setErrors(errors.errorPasswordMessage = needsLowerCasePassword);
+      setErrors({ ...errors, errorPasswordMessage: needsLowerCasePassword });
     } else {
       setErrors(errors.errorPasswordMessage = '');
     }
@@ -61,10 +61,10 @@ export const SignUpForm = () => {
 
   const onConfirmPasswordChange = (event) => {
     const confPassValue = event.target.value;
-    if (confPassValue !== password) {
-      setErrors(errors.errorConfirmPassMessage = diffPassword);
+    if (confPassValue !== userInfo.password) {
+      setErrors({ ...errors, errorConfirmPassMessage: diffPassword });
     } else {
-      setErrors(errors.errorConfirmPassMessage = '');
+      setErrors({ ...errors, errorConfirmPassMessage: '' });
     }
   };
 
@@ -72,10 +72,10 @@ export const SignUpForm = () => {
     <StyledFormContainer>
       <h1>{SIGN_UP_TITLE}</h1>
       <StyledForm>
-        <FormInput placeholder="user name" onChange={onNameChange} errormessage={errors.errorNameMessage} />
-        <FormInput placeholder="email" onChange={onEmailChange} errormessage={errors.errorEmailMessage} />
-        <FormInput placeholder="password" onChange={onPasswordChange} errormessage={errors.errorPasswordMessage} />
-        <FormInput placeholder="confirm password" onChange={onConfirmPasswordChange} errormessage={errors.errorConfirmPassMessage} />
+        <FormInput placeholder="user name" type="text" onChange={onNameChange} errorMessage={errors.errorNameMessage} value={userInfo.name} />
+        <FormInput placeholder="email" type="email" onChange={onEmailChange} errorMessage={errors.errorEmailMessage} value={userInfo.email} />
+        <FormInput placeholder="password" type="password" onChange={onPasswordChange} errorMessage={errors.errorPasswordMessage} value={userInfo.password} />
+        <FormInput placeholder="confirm password" type="password" onChange={onConfirmPasswordChange} errorMessage={errors.errorConfirmPassMessage} />
         <StyledButton
           type="submit"
           disabled={!!errors.errorEmailMessage || !!errors.errorPasswordMessage
