@@ -1,39 +1,47 @@
-import React, { useEffect, useState } from 'react';
-// import { isEmail } from 'validator';
+import React, { useState } from 'react';
 import {
-  StyledFormContainer, StyledButton, StyledInput, StyledForm, StyledError,
+  StyledFormContainer, StyledButton, StyledForm,
 } from '../../../elements';
 import {
-  ERROR_MESSAGES, SIGN_UP_TITLE, QUESTION_TITLE, LOG_IN_LINK_TITLE,
+  ERROR_MESSAGES, SIGN_UP_TITLE, QUESTION_TITLE, LOG_IN_LINK_TITLE, EMAIL_REGEX,
 } from '../../../constants';
+import { FormInput } from '../inputs';
+
+const {
+  shortName, wrongEmail, shortPassword, needsLowerCasePassword,
+  needsUpperCasePassword, diffPassword,
+} = ERROR_MESSAGES;
 
 export const SignUpForm = () => {
-  const emailRegex = /\S+@\S+\.\S+/;
-  const [errorNameMessage, setErrorNameMessage] = useState('');
-  const [errorEmailMessage, setErrorEmailMessage] = useState('');
-  const [errorPasswordMessage, setErrorPasswordMessage] = useState('');
-  const [errorRepeatPassMessage, setErrorRepeatPassMessage] = useState('');
+  const [errors, setErrors] = useState({
+    errorNameMessage: '',
+    errorEmailMessage: '',
+    errorPasswordMessage: '',
+    errorConfirmPassMessage: '',
+  });
   const [password, setPassword] = useState('');
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const {
-    name, email, shortPassword, needsLowerCasePassword,
-    needsUpperCasePassword, diffPassword,
-  } = ERROR_MESSAGES;
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    email: '',
+  });
 
   const onNameChange = (event) => {
-    if (event.target.value.length === 0) {
-      setErrorNameMessage(name);
+    const nameValue = event.target.value;
+    setUserInfo(userInfo.name = nameValue);
+    if (!nameValue) {
+      setErrors(errors.errorNameMessage = shortName);
     } else {
-      setErrorNameMessage('');
+      setErrors(errors.errorNameMessage = '');
     }
   };
 
   const onEmailChange = (event) => {
-    if (emailRegex.test(event.target.value) || event.target.value.length === 0) {
-      setErrorEmailMessage('');
+    const emailValue = event.target.value;
+    setUserInfo(userInfo.email = emailValue);
+    if (EMAIL_REGEX.test(emailValue)) {
+      setErrors(errors.errorEmailMessage = '');
     } else {
-      setErrorEmailMessage(email);
+      setErrors(errors.errorEmailMessage = wrongEmail);
     }
   };
 
@@ -41,44 +49,36 @@ export const SignUpForm = () => {
     const passValue = event.target.value;
     setPassword(passValue);
     if (passValue.length < 8) {
-      setErrorPasswordMessage(shortPassword);
+      setErrors(errors.errorPasswordMessage = shortPassword);
     } else if (passValue === passValue.toLowerCase()) {
-      setErrorPasswordMessage(needsUpperCasePassword);
+      setErrors(errors.errorPasswordMessage = needsUpperCasePassword);
     } else if (passValue === passValue.toUpperCase()) {
-      setErrorPasswordMessage(needsLowerCasePassword);
+      setErrors(errors.errorPasswordMessage = needsLowerCasePassword);
     } else {
-      setErrorPasswordMessage('');
+      setErrors(errors.errorPasswordMessage = '');
     }
   };
 
-  const onRepeatPasswordChange = (event) => {
+  const onConfirmPasswordChange = (event) => {
     if (event.target.value !== password || event.target.value.length === 0) {
-      setErrorRepeatPassMessage(diffPassword);
+      setErrors(errors.errorConfirmPassMessage = diffPassword);
     } else {
-      setErrorRepeatPassMessage('');
+      setErrors(errors.errorConfirmPassMessage = '');
     }
   };
-
-  useEffect(() => {
-    setIsButtonDisabled(!!errorEmailMessage || !!errorPasswordMessage
-      || !!errorRepeatPassMessage || !!errorNameMessage);
-  }, [errorNameMessage, errorPasswordMessage, errorRepeatPassMessage, errorEmailMessage]);
 
   return (
     <StyledFormContainer>
       <h1>{SIGN_UP_TITLE}</h1>
       <StyledForm>
-        <StyledInput placeholder="user name" required onChange={onNameChange} onClick={onNameChange} />
-        <StyledError>{errorNameMessage}</StyledError>
-        <StyledInput placeholder="email" required onChange={onEmailChange} />
-        <StyledError>{errorEmailMessage}</StyledError>
-        <StyledInput placeholder="password" required type="password" onChange={onPasswordChange} />
-        <StyledError>{errorPasswordMessage}</StyledError>
-        <StyledInput placeholder="confirm password" required type="password" onChange={onRepeatPasswordChange} />
-        <StyledError>{errorRepeatPassMessage}</StyledError>
+        <FormInput placeholder="user name" onChange={onNameChange} errormessage={errors.errorNameMessage} />
+        <FormInput placeholder="email" onChange={onEmailChange} errormessage={errors.errorEmailMessage} />
+        <FormInput placeholder="password" onChange={onPasswordChange} errormessage={errors.errorPasswordMessage} />
+        <FormInput placeholder="confirm password" onChange={onConfirmPasswordChange} errormessage={errors.errorConfirmPassMessage} />
         <StyledButton
           type="submit"
-          disabled={isButtonDisabled}
+          disabled={!!errors.errorEmailMessage || !!errors.errorPasswordMessage
+            || !!errors.errorRepeatPassMessage || !!errors.errorNameMessage}
         >
           {SIGN_UP_TITLE}
         </StyledButton>

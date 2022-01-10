@@ -14,7 +14,7 @@ function App() {
   console.log(email);
   useEffect(() => {
     dispatch(authActions.signUp('test'));
-  }, []);
+  }, [dispatch]);
   return (
     <Router>
       <Routes>
