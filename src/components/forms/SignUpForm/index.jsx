@@ -70,15 +70,14 @@ export const SignUpForm = () => {
       setErrors({ ...errors, errorConfirmPassMessage: '' });
     }
   };
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, password } = userInfo;
-    const userName = {
+    api.auth.registerUser({
       name,
       email,
       password,
-    };
-    api.auth.registerUser(userName)
+    })
       .then((res) => {
         console.log(res);
         console.log(res.data);
@@ -86,7 +85,7 @@ export const SignUpForm = () => {
       .catch((err) => {
         console.error(err.message);
       });
-  }
+  };
 
   return (
     <StyledFormContainer>
@@ -98,7 +97,7 @@ export const SignUpForm = () => {
         <FormInput placeholder="confirm password" type="password" onChange={onConfirmPasswordChange} errorMessage={errors.errorConfirmPassMessage} value={userInfo.confirmPassword} />
         <StyledButton
           type="submit"
-          onClick={(e) => handleSubmit(e)}
+          onClick={handleSubmit}
           disabled={!!errors.errorEmailMessage || !!errors.errorPasswordMessage
             || !!errors.errorRepeatPassMessage || !!errors.errorNameMessage}
         >
