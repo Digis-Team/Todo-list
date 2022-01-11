@@ -63,7 +63,7 @@ export const SignUpForm = () => {
 
   const onConfirmPasswordChange = (event) => {
     const confPassValue = event.target.value;
-    setUserInfo({ ...userInfo, confPassword: confPassValue });
+    setUserInfo({ ...userInfo, confirmPassword: confPassValue });
     if (confPassValue !== userInfo.password) {
       setErrors({ ...errors, errorConfirmPassMessage: diffPassword });
     } else {
