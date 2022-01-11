@@ -6,6 +6,7 @@ import {
   ERROR_MESSAGES, SIGN_UP_TITLE, QUESTION_TITLE, LOG_IN_LINK_TITLE, EMAIL_REGEX,
 } from '../../../constants';
 import { FormInput } from '../inputs';
+import { api } from '../../../api';
 
 const {
   shortName, wrongEmail, shortPassword, needsLowerCasePassword,
@@ -23,6 +24,7 @@ export const SignUpForm = () => {
     name: '',
     email: '',
     password: '',
+    confPassword: '',
   });
 
   const onNameChange = (event) => {
@@ -61,12 +63,29 @@ export const SignUpForm = () => {
 
   const onConfirmPasswordChange = (event) => {
     const confPassValue = event.target.value;
+    setUserInfo({ ...userInfo, confPassword: confPassValue });
     if (confPassValue !== userInfo.password) {
       setErrors({ ...errors, errorConfirmPassMessage: diffPassword });
     } else {
       setErrors({ ...errors, errorConfirmPassMessage: '' });
     }
   };
+  function handleSubmit(e) {
+    e.preventDefault();
+    const userName = {
+      name: userInfo.name,
+      email: userInfo.email,
+      password: userInfo.password,
+    };
+    api.auth.registerUser(userName)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  }
 
   return (
     <StyledFormContainer>
@@ -75,9 +94,10 @@ export const SignUpForm = () => {
         <FormInput placeholder="user name" type="text" onChange={onNameChange} errorMessage={errors.errorNameMessage} value={userInfo.name} />
         <FormInput placeholder="email" type="email" onChange={onEmailChange} errorMessage={errors.errorEmailMessage} value={userInfo.email} />
         <FormInput placeholder="password" type="password" onChange={onPasswordChange} errorMessage={errors.errorPasswordMessage} value={userInfo.password} />
-        <FormInput placeholder="confirm password" type="password" onChange={onConfirmPasswordChange} errorMessage={errors.errorConfirmPassMessage} />
+        <FormInput placeholder="confirm password" type="password" onChange={onConfirmPasswordChange} errorMessage={errors.errorConfirmPassMessage} value={userInfo.confPassword} />
         <StyledButton
           type="submit"
+          onClick={(e) => handleSubmit(e)}
           disabled={!!errors.errorEmailMessage || !!errors.errorPasswordMessage
             || !!errors.errorRepeatPassMessage || !!errors.errorNameMessage}
         >
