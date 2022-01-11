@@ -24,7 +24,7 @@ export const SignUpForm = () => {
     name: '',
     email: '',
     password: '',
-    confPassword: '',
+    confirmPassword: '',
   });
 
   const onNameChange = (event) => {
@@ -72,10 +72,11 @@ export const SignUpForm = () => {
   };
   function handleSubmit(e) {
     e.preventDefault();
+    const { name, email, password } = userInfo;
     const userName = {
-      name: userInfo.name,
-      email: userInfo.email,
-      password: userInfo.password,
+      name,
+      email,
+      password,
     };
     api.auth.registerUser(userName)
       .then((res) => {
@@ -94,7 +95,7 @@ export const SignUpForm = () => {
         <FormInput placeholder="user name" type="text" onChange={onNameChange} errorMessage={errors.errorNameMessage} value={userInfo.name} />
         <FormInput placeholder="email" type="email" onChange={onEmailChange} errorMessage={errors.errorEmailMessage} value={userInfo.email} />
         <FormInput placeholder="password" type="password" onChange={onPasswordChange} errorMessage={errors.errorPasswordMessage} value={userInfo.password} />
-        <FormInput placeholder="confirm password" type="password" onChange={onConfirmPasswordChange} errorMessage={errors.errorConfirmPassMessage} value={userInfo.confPassword} />
+        <FormInput placeholder="confirm password" type="password" onChange={onConfirmPasswordChange} errorMessage={errors.errorConfirmPassMessage} value={userInfo.confirmPassword} />
         <StyledButton
           type="submit"
           onClick={(e) => handleSubmit(e)}
