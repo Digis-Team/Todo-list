@@ -35,6 +35,18 @@
       "password": "$2a$10$JybiSg9bOw1NjWtxZkd14.SPDK2YJaZVx5inbLSYs7tYwd3po.k/i",
       "name": "test4",
       "id": 6
+    },
+    {
+      "email": "test32@gmail.com",
+      "password": "$2a$10$oZUyl.zQPtcfHdrZ7/MRGeOKbd0v.KoC3E6jeJkapt8ZV3LC6p8p6",
+      "name": "test32",
+      "id": 7
+    },
+    {
+      "email": "olyalya@gmail.com",
+      "password": "$2a$10$XVQ1NLFmK50QcxMOPSgYH.GZqfswOgonJwJniu14YWsaBVnXkp5zK",
+      "name": "test",
+      "id": 8
     }
   ]
 }

@@ -76,6 +76,7 @@ export const SignUpForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('click');
     const { name, email, password } = userInfo;
     dispatch(authActions.signUpAsync({ name, email, password }));
   };

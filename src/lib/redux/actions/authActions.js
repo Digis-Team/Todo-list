@@ -1,5 +1,3 @@
-import { useDispatch as dispatch } from 'react-redux';
-// import { values } from 'json-server-auth';
 import { authTypes } from '../types';
 import { api } from '../../../api';
 
@@ -9,28 +7,23 @@ export const authActions = Object.freeze({
     payload: values,
   }),
 
-  fillUserProfile: (response) => ({
+  fillUserProfileAsync: (token) => async () => ({
     type: authTypes.SUCCESS,
-    payload: response.json,
+    payload: token.json(),
   }),
   fillError: (error) => ({
     type: authTypes.ERROR,
     payload: error,
   }),
 
-  async signUpAsync(values) {
+  signUpAsync: (values) => async (dispatch) => {
     console.log(values);
-    await api.auth.registerUser(values)
-      .then(
-        (response) => {
-          console.log('response');
-          console.log(response.json());
-          const { data: token } = response.json();
-          console.log(token);
-          localStorage.setItem('token', token);
-          dispatch(authActions.fillUserProfile(token));
-        },
-      )
+    const response = await api.auth.registerUser(values);
+    console.log('response');
+    const { data: token } = await response.json();
+    console.log(token);
+    localStorage.setItem('token', token);
+    dispatch(authActions.fillUserProfileAsync(token))
       .catch((err) => {
         dispatch(authActions.fillError(err.message));
         console.error(err.message);
