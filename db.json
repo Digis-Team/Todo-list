@@ -47,6 +47,42 @@
       "password": "$2a$10$XVQ1NLFmK50QcxMOPSgYH.GZqfswOgonJwJniu14YWsaBVnXkp5zK",
       "name": "test",
       "id": 8
+    },
+    {
+      "email": "olka@gmail.com",
+      "password": "$2a$10$YHfJdqA9mRcgXpZFZeqWx.2U1HaYpwjFJkZZk50bvQqeLOdwOLGau",
+      "name": "olka",
+      "id": 9
+    },
+    {
+      "email": "olka1@gmail.com",
+      "password": "$2a$10$864LI11sjLAMUn6Cjng9ReXI3TpfQs.JCa42R.fqb2iRNlu1DW/5a",
+      "name": "olka1",
+      "id": 10
+    },
+    {
+      "email": "smth@gmail.com",
+      "password": "$2a$10$9P8D9UXr5Hocxy1OxwsOK.r9xP1434T18tTQ2.u.dFgPCwY.qyKA2",
+      "name": "smth",
+      "id": 11
+    },
+    {
+      "email": "Smth@gmail.com",
+      "password": "$2a$10$RTEEL5uWM7dFW0Y2DcAHg.36zsSfKoYwM8DvbT6ehAbaJx.4UDj3W",
+      "name": "Smth",
+      "id": 12
+    },
+    {
+      "email": "olya@gmail.com",
+      "password": "$2a$10$YthHAOtf2.azAtmysPZU6eWfXXNJd7fcKKfHdFWrGfO1yzvy7v6Aa",
+      "name": "olya",
+      "id": 13
+    },
+    {
+      "email": "same@gmail.com",
+      "password": "$2a$10$2HfIS51A8iAYG9PtVwAo9O31Tnj91gl6s6Bu2HrPSIGApeOVMmyhy",
+      "name": "same",
+      "id": 14
     }
   ]
 }

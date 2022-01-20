@@ -9,7 +9,7 @@ export const authActions = Object.freeze({
 
   fillUserProfileAsync: (token) => async () => ({
     type: authTypes.SUCCESS,
-    payload: token.json(),
+    payload: token,
   }),
   fillError: (error) => ({
     type: authTypes.ERROR,
@@ -17,24 +17,16 @@ export const authActions = Object.freeze({
   }),
 
   signUpAsync: (values) => async (dispatch) => {
-    console.log(values);
-    const response = await api.auth.registerUser(values);
-    console.log('response');
-    const { data: token } = await response.json();
-    console.log(token);
-    localStorage.setItem('token', token);
-    dispatch(authActions.fillUserProfileAsync(token))
-      .catch((err) => {
-        dispatch(authActions.fillError(err.message));
-        console.error(err.message);
-      });
+    try {
+      const response = await api.auth.registerUser(values);
+      console.log(response.data);
+      const token = await response.data.accessToken;
+      console.log(token);
+      localStorage.setItem('token', token);
+      dispatch(authActions.fillUserProfileAsync(token));
+    } catch (err) {
+      dispatch(authActions.fillError(err.message));
+      console.error(err.message);
+    }
   },
 });
-
-// export const SignIn = (values) => (dispatch) => api.auth.registerUser(values)
-//   .then(
-//     () => dispatch(authActions.signUp),
-//   )
-//   .catch((err) => {
-//     console.error(err.message);
-//   });
