@@ -5,6 +5,36 @@
       "password": "$2a$10$Zqyr9uhdnOeaE3marwKwBecDegMGTFQxYrDIwpm6Z6m7pK5GV..6O",
       "name": "test",
       "id": 1
+    },
+    {
+      "email": "olya@mail.com",
+      "password": "$2a$10$frehHgqP3MgjPmzd5iLQpOkaUuDIMyPIk2ZKGNdBMtOP6ZFTthAKy",
+      "name": "olya",
+      "id": 2
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$BOcxY918SJnhm21ARzmCwuyue1L/vYpsG38ZzwrStvkWbYMbje6sK",
+      "name": "test",
+      "id": 3
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "$2a$10$dnbo4IVLTYaqNJMpI9hKH.hHDk6P9u.KL5iWW1RM2MBD3O3CTTDdW",
+      "name": "test2",
+      "id": 4
+    },
+    {
+      "email": "test3@gmail.com",
+      "password": "$2a$10$6f/MCVeLC4nyyMq8lklzCeVFu9Gs.OC2OQR2a9KUgEYpPORbOYoaq",
+      "name": "test3",
+      "id": 5
+    },
+    {
+      "email": "test4@gmail.com",
+      "password": "$2a$10$JybiSg9bOw1NjWtxZkd14.SPDK2YJaZVx5inbLSYs7tYwd3po.k/i",
+      "name": "test4",
+      "id": 6
     }
   ]
 }

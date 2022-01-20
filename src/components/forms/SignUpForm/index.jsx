@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   StyledFormContainer, StyledButton, StyledForm,
 } from '../../../elements';
@@ -6,7 +7,8 @@ import {
   ERROR_MESSAGES, SIGN_UP_TITLE, QUESTION_TITLE, LOG_IN_LINK_TITLE, EMAIL_REGEX,
 } from '../../../constants';
 import { FormInput } from '../inputs';
-import { api } from '../../../api';
+// import { api } from '../../../api';
+import { authActions } from '../../../lib/redux/actions';
 
 const {
   shortName, wrongEmail, shortPassword, needsLowerCasePassword,
@@ -14,6 +16,8 @@ const {
 } = ERROR_MESSAGES;
 
 export const SignUpForm = () => {
+  const dispatch = useDispatch();
+
   const [errors, setErrors] = useState({
     errorNameMessage: '',
     errorEmailMessage: '',
@@ -73,18 +77,7 @@ export const SignUpForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, password } = userInfo;
-    api.auth.registerUser({
-      name,
-      email,
-      password,
-    })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
+    dispatch(authActions.signUpAsync({ name, email, password }));
   };
 
   return (
