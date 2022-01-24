@@ -1,6 +1,4 @@
 export const authTypes = Object.freeze({
-  SIGN_UP: 'SIGN_UP',
-  REGISTER: 'REGISTER',
-  SUCCESS: 'SUCCESS',
-  ERROR: 'ERROR',
+  FILL_USER_PROFILE: 'FILL_USER_PROFILE',
+  SET_AUTH_ERROR: 'SET_AUTH_ERROR',
 });

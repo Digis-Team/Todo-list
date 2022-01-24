@@ -1,3 +1,16 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "olkas@gmail.com",
+      "password": "$2a$10$gTqMpcnkUJUPVpxvth7luObFuCKcUSofnnroKvLJCkDOaASOwEZ.i",
+      "name": "olkas",
+      "id": 1
+    },
+    {
+      "email": "smyh@gmail.com",
+      "password": "$2a$10$UexGqjSVjPcUM8JH8HohFeGhAh69M9KegpSAZXcNwSDVmJwUBcwdy",
+      "name": "smth",
+      "id": 2
+    }
+  ]
 }

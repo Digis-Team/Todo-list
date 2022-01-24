@@ -1,19 +1,18 @@
 import { authTypes } from '../types';
 
 const initialState = {
-  name: '',
-  email: '',
-  password: '',
+  profile: null,
+  error: null,
 };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case authTypes.SUCCESS:
+    case authTypes.FILL_USER_PROFILE:
       return {
         ...state,
-        ...action.payload,
+        profile: action.payload,
       };
-    case authTypes.ERROR:
+    case authTypes.SET_AUTH_ERROR:
       return {
         ...state,
         error: action.payload,
