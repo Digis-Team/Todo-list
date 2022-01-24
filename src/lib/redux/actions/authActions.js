@@ -11,7 +11,7 @@ export const authActions = Object.freeze({
       const response = await api.auth.getUserInfo(id);
       dispatch(authActions.fillUserProfile(response.data));
     } catch (err) {
-      console.error(err.message);
+      dispatch(authActions.setFetchingError(err.message));
     }
   },
   setFetchingError: (error) => ({

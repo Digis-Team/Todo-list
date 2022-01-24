@@ -11,11 +11,13 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.payload,
+        error: null,
       };
     case authTypes.SET_AUTH_ERROR:
       return {
         ...state,
         error: action.payload,
+        profile: null,
       };
     default:
       return state;
