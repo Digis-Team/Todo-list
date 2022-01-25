@@ -28,4 +28,14 @@ export const authActions = Object.freeze({
       dispatch(authActions.setFetchingError(err.message));
     }
   },
+  logInAsync: (values) => async (dispatch) => {
+    try {
+      const response = await api.auth.loginUser(values);
+      const { data: { user: { id } } } = response;
+      localStorage.setItem('id', id);
+      dispatch(authActions.fillUserProfileAsync(id));
+    } catch (err) {
+      dispatch(authActions.setFetchingError(err.message));
+    }
+  },
 });

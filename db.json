@@ -11,6 +11,12 @@
       "password": "$2a$10$UexGqjSVjPcUM8JH8HohFeGhAh69M9KegpSAZXcNwSDVmJwUBcwdy",
       "name": "smth",
       "id": 2
+    },
+    {
+      "email": "olka@gmail.com",
+      "password": "$2a$10$MX4IERclDPQxaodqCMXmmebKfe/HUh6lCU/SXPpfl4jtftk59lbRi",
+      "name": "olka",
+      "id": 3
     }
   ]
 }

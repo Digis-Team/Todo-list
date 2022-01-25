@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   StyledFormContainer, StyledButton, StyledForm,
 } from '../../../elements';
@@ -97,7 +98,7 @@ export const SignUpForm = () => {
         </StyledButton>
       </StyledForm>
       <div>{QUESTION_TITLE}</div>
-      <a href="/">{LOG_IN_LINK_TITLE}</a>
+      <Link to="/login">{LOG_IN_LINK_TITLE}</Link>
     </StyledFormContainer>
   );
 };

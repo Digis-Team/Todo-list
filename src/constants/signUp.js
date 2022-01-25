@@ -7,6 +7,8 @@ export const ERROR_MESSAGES = {
   diffPassword: 'Passwords don`t match',
 };
 export const SIGN_UP_TITLE = 'Sign up';
+export const LOG_IN_TITLE = 'Log in';
 export const QUESTION_TITLE = 'Aleady have an account?';
 export const LOG_IN_LINK_TITLE = 'Log in here';
+export const SIGN_UP_LINK_TITLE = 'Sign up here';
 export const EMAIL_REGEX = /\S+@\S+\.\S+/;
