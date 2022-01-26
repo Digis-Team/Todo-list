@@ -27,6 +27,7 @@ export const LogInForm = () => {
     e.preventDefault();
     dispatch(authActions.logInAsync(userInfo));
   };
+
   return (
     <StyledFormContainer>
       <h1>{LOG_IN_TITLE}</h1>
