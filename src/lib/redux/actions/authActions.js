@@ -11,7 +11,7 @@ export const authActions = Object.freeze({
       const response = await api.auth.getUserInfo(id);
       dispatch(authActions.fillUserProfile(response.data));
     } catch (err) {
-      dispatch(authActions.setFetchingError(err.message));
+      dispatch(authActions.setFetchingError(err.response.data));
     }
   },
   setFetchingError: (error) => ({
@@ -25,7 +25,7 @@ export const authActions = Object.freeze({
       localStorage.setItem('id', id);
       dispatch(authActions.fillUserProfileAsync(id));
     } catch (err) {
-      dispatch(authActions.setFetchingError(err.message));
+      dispatch(authActions.setFetchingError(err.response.data));
     }
   },
   logInAsync: (values) => async (dispatch) => {
@@ -35,7 +35,7 @@ export const authActions = Object.freeze({
       localStorage.setItem('id', id);
       dispatch(authActions.fillUserProfileAsync(id));
     } catch (err) {
-      dispatch(authActions.setFetchingError(err.message));
+      dispatch(authActions.setFetchingError(err.response.data));
     }
   },
 });

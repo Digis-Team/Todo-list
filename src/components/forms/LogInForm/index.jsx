@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  StyledFormContainer, StyledButton, StyledForm,
+  StyledFormContainer, StyledButton, StyledForm, StyledInput, StyledError,
 } from '../../../elements';
 import {
   SIGN_UP_LINK_TITLE, QUESTION_TITLE, LOG_IN_TITLE,
 } from '../../../constants';
-import { FormInput } from '../inputs';
 import { authActions } from '../../../lib/redux/actions';
+import { selectError } from '../../../lib/redux/selectors';
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
+
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
   });
-  const onEmailChange = (event) => setUserInfo({ ...userInfo, email: event.target.value });
-  const onPasswordChange = (event) => setUserInfo({ ...userInfo, password: event.target.value });
+
+  const onChange = (event) => {
+    const { name, value } = event.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = userInfo;
-    dispatch(authActions.logInAsync({ email, password }));
+    dispatch(authActions.logInAsync(userInfo));
   };
   return (
     <StyledFormContainer>
       <h1>{LOG_IN_TITLE}</h1>
       <StyledForm>
-        <FormInput placeholder="email" type="email" onChange={onEmailChange} value={userInfo.email} />
-        <FormInput placeholder="password" type="password" onChange={onPasswordChange} value={userInfo.password} />
+        <StyledInput placeholder="email" name="email" type="email" onChange={onChange} value={userInfo.email} />
+        <StyledInput placeholder="password" name="password" type="password" onChange={onChange} value={userInfo.password} />
+        <StyledError>{error}</StyledError>
         <StyledButton
           type="submit"
           onClick={handleSubmit}
+          disabled={!userInfo.email || !userInfo.password}
         >
           {LOG_IN_TITLE}
         </StyledButton>

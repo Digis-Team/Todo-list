@@ -1,2 +1,1 @@
-export const selectEmail = (state) => state.auth.email;
-// export const selectUserInfo = (state) => state
+export const selectError = (state) => state.auth.error;

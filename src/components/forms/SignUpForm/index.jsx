@@ -7,7 +7,7 @@ import {
 import {
   ERROR_MESSAGES, SIGN_UP_TITLE, QUESTION_TITLE, LOG_IN_LINK_TITLE, EMAIL_REGEX,
 } from '../../../constants';
-import { FormInput } from '../inputs';
+import { FormInput } from '../elements';
 import { authActions } from '../../../lib/redux/actions';
 
 const {

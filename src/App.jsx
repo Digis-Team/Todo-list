@@ -11,7 +11,6 @@ function App() {
       <Routes>
         <Route path={book.root} element={<SignUpPage />} />
         <Route path={book.login} element={<LogInPage />} />
-
       </Routes>
     </Router>
   );
