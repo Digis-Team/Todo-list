@@ -1,22 +1,10 @@
 {
   "users": [
     {
-      "email": "olkas@gmail.com",
-      "password": "$2a$10$gTqMpcnkUJUPVpxvth7luObFuCKcUSofnnroKvLJCkDOaASOwEZ.i",
-      "name": "olkas",
-      "id": 1
-    },
-    {
-      "email": "smyh@gmail.com",
-      "password": "$2a$10$UexGqjSVjPcUM8JH8HohFeGhAh69M9KegpSAZXcNwSDVmJwUBcwdy",
-      "name": "smth",
-      "id": 2
-    },
-    {
       "email": "olka@gmail.com",
-      "password": "$2a$10$MX4IERclDPQxaodqCMXmmebKfe/HUh6lCU/SXPpfl4jtftk59lbRi",
+      "password": "$2a$10$I9htAylwzQd2DnYUvc7wa.CaFThDCNBGe9h/R6SyV4a.zQjPXVmPu",
       "name": "olka",
-      "id": 3
+      "id": 1
     }
   ]
 }

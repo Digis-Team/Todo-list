@@ -12,6 +12,7 @@ import { selectError } from '../../../lib/redux/selectors';
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
+
   const error = useSelector(selectError);
 
   const [userInfo, setUserInfo] = useState({
@@ -44,7 +45,7 @@ export const LogInForm = () => {
         </StyledButton>
       </StyledForm>
       <div>{QUESTION_TITLE}</div>
-      <Link to="/">{SIGN_UP_LINK_TITLE}</Link>
+      <Link to="/signUp">{SIGN_UP_LINK_TITLE}</Link>
     </StyledFormContainer>
   );
 };
