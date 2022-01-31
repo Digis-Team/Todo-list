@@ -9,7 +9,7 @@ import {
 import { book } from './navigation/book';
 import { selectProfile } from './lib/redux/selectors';
 import { authActions } from './lib/redux/actions';
-import { PrivateRoute } from './navigation/privateRoute';
+import { PrivateRoute } from './navigation/PrivateRoute';
 
 function App() {
   const dispatch = useDispatch();

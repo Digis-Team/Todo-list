@@ -1,7 +1,5 @@
-import { createBrowserHistory } from 'history';
 import { authTypes } from '../types';
 import { api } from '../../../api';
-import { book } from '../../../navigation/book';
 
 export const authActions = Object.freeze({
   fillUserProfile: (userInfo) => ({
@@ -36,8 +34,6 @@ export const authActions = Object.freeze({
       const { data: { user: { id } } } = response;
       localStorage.setItem('id', id);
       dispatch(authActions.fillUserProfileAsync(id));
-      const history = createBrowserHistory();
-      history.push(book.toDoList);
     } catch (err) {
       dispatch(authActions.setFetchingError(err.response.data));
     }
