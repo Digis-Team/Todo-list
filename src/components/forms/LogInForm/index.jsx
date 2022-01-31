@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   StyledFormContainer, StyledButton, StyledForm, StyledInput, StyledError,
 } from '../../../elements';
@@ -9,11 +9,9 @@ import {
 } from '../../../constants';
 import { authActions } from '../../../lib/redux/actions';
 import { selectError } from '../../../lib/redux/selectors';
-import { book } from '../../../navigation/book';
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const error = useSelector(selectError);
 
@@ -29,7 +27,6 @@ export const LogInForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authActions.logInAsync(userInfo));
-    navigate(book.toDoList);
   };
 
   return (
