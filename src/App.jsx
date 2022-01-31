@@ -3,22 +3,13 @@ import {
   Routes, Route, Navigate, useNavigate,
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import propTypes from 'prop-types';
 import {
   SignUpPage, LogInPage, ToDoList, PageNotFound,
 } from './pages';
 import { book } from './navigation/book';
 import { selectProfile } from './lib/redux/selectors';
 import { authActions } from './lib/redux/actions';
-
-const PrivateRoute = ({ children }) => {
-  const profile = useSelector(selectProfile);
-
-  if (profile) {
-    return children;
-  }
-  return <Navigate to={book.login} replace />;
-};
+import { PrivateRoute } from './navigation/privateRoute';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,9 +48,3 @@ function App() {
 }
 
 export default App;
-PrivateRoute.defaultProps = {
-  children: null,
-};
-PrivateRoute.propTypes = {
-  children: propTypes.element,
-};

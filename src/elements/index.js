@@ -4,3 +4,4 @@ export * from './Form';
 export * from './Input';
 export * from './ErrorMessage';
 export * from './ErrorContainer';
+export * from './Image';
