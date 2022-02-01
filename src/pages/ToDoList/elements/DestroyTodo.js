@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledDestroyTodo = styled.img`
   visibility: hidden;
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 `;

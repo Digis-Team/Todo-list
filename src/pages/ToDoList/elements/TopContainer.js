@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledTopContiner = styled.div`
+export const StyledTopContainer = styled.div`
   background-color: #AF7EEB;
   height: 15%;
   border-radius: 5px;

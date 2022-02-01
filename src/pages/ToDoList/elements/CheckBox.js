@@ -7,7 +7,7 @@ export const StyledCheckBox = styled.div`
   height: 10px;
   background-color: #FFFFFC;
   margin: 5px;
-  :hover {
+  &:hover {
     background-color: thistle;
     cursor: pointer;
   }
