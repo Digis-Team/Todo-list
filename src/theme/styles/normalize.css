@@ -22,6 +22,7 @@
 
 body {
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /**
@@ -346,4 +347,110 @@ template {
 
 [hidden] {
   display: none;
+}
+.page{
+  color: #362562;
+  width: 100vw;
+  height: 100vh;
+  background: #E3E9FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ToDoContainer{
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.top{
+  background-color: #AF7EEB;
+  height: 15%;
+  border-radius: 5px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: large;
+}
+.toDoListContainer {
+  background:#FFFFFC;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 80%;
+  border-radius: 5px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.todo {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.edit {
+  visibility: hidden;
+}
+.destroy {
+  visibility: hidden;
+}
+.edit:hover,
+.destroy:hover {
+  cursor: pointer;
+}
+.todo:hover {
+  background-color: #E1E1C9; 
+}
+.todo:hover 
+.destroy {
+  visibility: visible;
+}
+.todo:hover 
+.edit {
+  visibility: visible;
+}
+.checkbox {
+  border-radius: 100%;
+  border: 2px solid thistle;
+  width: 10px;
+  height: 10px;
+  background-color: #FFFFFC;
+  margin: 5px;
+}
+.checkbox:hover {
+  background-color: thistle;
+  cursor: pointer;
+}
+.checkbox:checked
+.task {
+  text-decoration:line-through;
+}
+.task{
+  width: 80%;
+}
+.addTodo {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: space-around;
+}
+.input {
+  width: 80%;
+  height: 30px;
+  border-radius: 7px;
+  border: solid 2px thistle;
+  background: #EFEFEF;
+}
+.button {
+  border-radius: 7px;
+  border: solid 2px thistle;
+}
+.button:hover {
+  background: thistle;
+  cursor: pointer;
 }
