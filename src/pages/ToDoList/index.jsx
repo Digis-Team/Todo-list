@@ -38,25 +38,25 @@ export const ToDoList = () => {
             <StyledButton type="button">Add todo</StyledButton>
           </StyledAddTodo>
           <StyledTodo>
-            <StyledCheckBox aria-hidden="true" onKeyDown={() => onClick()} onClick={() => onClick()} />
+            <StyledCheckBox aria-hidden="true" onKeyDown={onClick} onClick={onClick} />
             <StyledTask style={style}>Task1Task1Task1</StyledTask>
             <StyledEditTodo src={edit} alt="edit" />
             <StyledDestroyTodo src={destroy} alt="edit" />
           </StyledTodo>
           <StyledTodo>
-            <StyledCheckBox aria-hidden="true" onKeyDown={() => onClick()} onClick={() => onClick()} />
+            <StyledCheckBox aria-hidden="true" onKeyDown={onClick} onClick={onClick} />
             <StyledTask style={style}>Task2Task2Task2</StyledTask>
             <StyledEditTodo src={edit} alt="edit" />
             <StyledDestroyTodo src={destroy} alt="edit" />
           </StyledTodo>
           <StyledTodo>
-            <StyledCheckBox aria-hidden="true" onKeyDown={() => onClick()} onClick={() => onClick()} />
+            <StyledCheckBox aria-hidden="true" onKeyDown={onClick} onClick={onClick} />
             <StyledTask style={style}>Task3Task3Task3</StyledTask>
             <StyledEditTodo src={edit} alt="edit" />
             <StyledDestroyTodo src={destroy} alt="edit" />
           </StyledTodo>
           <StyledTodo>
-            <StyledCheckBox aria-hidden="true" onKeyDown={() => onClick()} onClick={() => onClick()} />
+            <StyledCheckBox aria-hidden="true" onKeyDown={onClick} onClick={onClick} />
             <StyledTask style={style}>Task1Task1Task1</StyledTask>
             <StyledEditTodo src={edit} alt="edit" />
             <StyledDestroyTodo src={destroy} alt="edit" />
