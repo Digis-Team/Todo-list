@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const StyledToDoContainer = styled.div`
   width: 50%;
-  height: 50%;
+  min-height: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;

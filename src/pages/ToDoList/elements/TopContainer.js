@@ -10,4 +10,5 @@ export const StyledTopContainer = styled.div`
   align-items: center;
   color: white;
   font-size: large;
+  padding: 10px;
 `;
