@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { StyledEditTodo } from './EditTodo';
 import { StyledDestroyTodo } from './DestroyTodo';
+import { StyledTask } from './Task';
 
 export const StyledTodo = styled.div`
   display: flex;
@@ -18,6 +19,9 @@ export const StyledTodo = styled.div`
   }
   &:hover ${StyledDestroyTodo} {
     visibility: visible;
+  }
+  &:hover ${StyledTask} {
+    background: #E1E1C9;
   }
   
 `;
