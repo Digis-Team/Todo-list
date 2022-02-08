@@ -32,8 +32,8 @@ export const tasksReducer = (state = initialState, action) => {
     case tasksTypes.TOGGLE_TASK:
       return {
         ...state,
-        data: state.data.map((task) => (task.id === action.payload.id
-          ? { ...task, isFinished: !action.payload.isFinished } : task)),
+        data: state.data.map((task) => (task.id === action.payload
+          ? { ...task, isFinished: !task.isFinished } : task)),
       };
     case tasksTypes.FETCH_TASKS:
       return {

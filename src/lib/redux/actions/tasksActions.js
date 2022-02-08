@@ -18,18 +18,10 @@ export const tasksActions = Object.freeze({
     type: tasksTypes.FETCH_TASKS,
     payload: tasks,
   }),
-  toggleTaskAsync: (taskInfo) => async (dispatch) => {
-    try {
-      console.log(taskInfo);
-      dispatch(tasksActions.toggleTask(taskInfo));
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  // deleteTask: (taskInfo) => ({
-  //   type: tasksTypes.DELETE_TASK,
-  //   payload: taskInfo,
-  // }),
+  deleteTask: (taskInfo) => ({
+    type: tasksTypes.DELETE_TASK,
+    payload: taskInfo,
+  }),
   setFetchingError: (error) => ({
     type: tasksTypes.SET_TASKS_ERROR,
     payload: error,
@@ -39,25 +31,32 @@ export const tasksActions = Object.freeze({
       const response = await api.tasks.createTask(taskInfo);
       dispatch(tasksActions.createTask(response.data));
     } catch (err) {
-      dispatch(tasksActions.setFetchingError(err.response));
+      dispatch(tasksActions.setFetchingError(err.message));
     }
   },
   updateTaskAsync: (taskId, taskText) => async (dispatch) => {
     try {
       const response = await api.tasks.updateTask(taskId, taskText);
-      console.log(response.data);
       dispatch(tasksActions.updateTask(response.data));
     } catch (err) {
-      dispatch(tasksActions.setFetchingError(err.response));
+      dispatch(tasksActions.setFetchingError(err.message));
     }
   },
   getTasksAsync: () => async (dispatch) => {
     try {
       const response = await api.tasks.getTasks();
-      console.log(response.data);
       dispatch(tasksActions.fetchTasks(response.data));
     } catch (err) {
-      console.log(err.response);
+      dispatch(tasksActions.setFetchingError(err.message));
+    }
+  },
+  deleteTaskAsync: (taskId) => async (dispatch) => {
+    try {
+      const response = await api.tasks.deleteTask(taskId);
+      // dispatch(tasksActions.fetchTasks(response.data));
+      console.log(response);
+    } catch (err) {
+      dispatch(tasksActions.setFetchingError(err.message));
     }
   },
 });

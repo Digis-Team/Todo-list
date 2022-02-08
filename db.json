@@ -7,18 +7,5 @@
       "id": 1
     }
   ],
-  "tasks": [
-    {
-      "task": "task1wmwwвв",
-      "id": 1
-    },
-    {
-      "task": "task2",
-      "id": 2
-    },
-    {
-      "task": "task3",
-      "id": 3
-    }
-  ]
+  "tasks": []
 }
