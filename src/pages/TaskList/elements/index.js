@@ -10,3 +10,4 @@ export * from './DestroyTodo';
 export * from './EditTodo';
 export * from './Task';
 export * from './Checkbox';
+export * from './Filter';

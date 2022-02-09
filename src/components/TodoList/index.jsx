@@ -9,6 +9,8 @@ import {
   StyledTask,
   StyledTodo,
   StyledCheckBox,
+  StyledFilter,
+  StyledButton,
 } from '../../pages/TaskList/elements';
 import { tasksActions } from '../../lib/redux/actions';
 import { selectTasks } from '../../lib/redux/selectors';
@@ -18,10 +20,15 @@ export const TodoList = () => {
   const dispatch = useDispatch();
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [changingTask, setChangingTask] = useState('');
+  const [selectedTasks, setSelectedTasks] = useState(tasks);
 
   useEffect(() => {
     dispatch(tasksActions.getTasksAsync());
   }, []);
+
+  useEffect(() => {
+    setSelectedTasks(tasks);
+  }, [tasks]);
 
   const toggleTask = (task) => {
     dispatch(tasksActions.updateTaskAsync(task.id, { ...task, isFinished: !task.isFinished }));
@@ -44,11 +51,20 @@ export const TodoList = () => {
   const deleteTask = (taskId) => {
     dispatch(tasksActions.deleteTaskAsync(taskId));
   };
+  const selectNotFinishedTasks = () => {
+    setSelectedTasks(tasks.filter((task) => task.isFinished === false));
+  };
+  const selectFinishedTasks = () => {
+    setSelectedTasks(tasks.filter((task) => task.isFinished === true));
+  };
+  const selectAllTasks = () => {
+    setSelectedTasks(tasks);
+  };
 
   return (
     <>
       {
-        tasks.map((task) => (
+        selectedTasks.map((task) => (
           <StyledTodo key={task.id}>
             <StyledCheckBox onClick={() => toggleTask(task)} />
             <StyledTask
@@ -56,7 +72,7 @@ export const TodoList = () => {
               value={editingTaskId === task.id ? changingTask : task.task}
               onChange={onTaskChange}
               border={editingTaskId === task.id}
-              textDecoration={task.isFinished}
+              textDecoration={task.isFinished ? 1 : 0}
             />
             <StyledEditTodo
               src={editingTaskId === task.id ? done : edit}
@@ -68,6 +84,11 @@ export const TodoList = () => {
           </StyledTodo>
         ))
       }
+      <StyledFilter>
+        <StyledButton onClick={() => selectAllTasks()}>All</StyledButton>
+        <StyledButton onClick={() => selectNotFinishedTasks()}>not Finished</StyledButton>
+        <StyledButton onClick={() => selectFinishedTasks()}>Finished</StyledButton>
+      </StyledFilter>
     </>
   );
 };
