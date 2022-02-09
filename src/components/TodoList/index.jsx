@@ -57,13 +57,11 @@ export const TodoList = () => {
               onChange={onTaskChange}
               border={editingTaskId === task.id}
               textDecoration={task.isFinished}
-              onBlur={() => updateTask(task)}
             />
             <StyledEditTodo
               src={editingTaskId === task.id ? done : edit}
-              onClick={() => (editingTaskId === task.id
-                ? updateTask(task)
-                : onEdit(task.task, task.id))}
+              onClick={editingTaskId === task.id ? () => updateTask(task)
+                : () => onEdit(task.task, task.id)}
               alt="edit"
             />
             <StyledDestroyTodo src={destroy} onClick={() => deleteTask(task.id)} alt="edit" />
