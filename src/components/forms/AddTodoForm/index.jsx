@@ -10,24 +10,22 @@ import {
 export const AddTodoForm = () => {
   const dispatch = useDispatch();
 
-  const [taskInfo, setTaskInfo] = useState({
-    task: '',
-  });
+  const [taskInfo, setTaskInfo] = useState('');
+
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(tasksActions.createTaskAsync(taskInfo));
-    setTaskInfo({
-      task: '',
-    });
+    setTaskInfo('');
   };
+
   const onChange = (event) => {
-    const newTask = event.target.value;
-    setTaskInfo({ ...taskInfo, task: newTask });
+    setTaskInfo(event.target.value);
   };
+
   return (
     <div>
       <StyledAddTodo>
-        <StyledInput type="text" name="text" value={taskInfo.task} onChange={onChange} placeholder="Write todo" />
+        <StyledInput type="text" name="text" value={taskInfo} onChange={onChange} placeholder="Write todo" />
         <StyledButton type="button" onClick={onSubmit}>Add todo</StyledButton>
       </StyledAddTodo>
     </div>

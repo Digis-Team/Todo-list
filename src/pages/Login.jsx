@@ -1,5 +1,5 @@
 import React from 'react';
-import { LogInForm } from '../components/forms/LogInForm';
+import { LogInForm } from '../components/forms';
 
 export const LogInPage = () => (
   <LogInForm />

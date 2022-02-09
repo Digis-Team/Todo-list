@@ -1,5 +1,6 @@
 import React from 'react';
-import { TodoList, AddTodoForm } from '../../components';
+import { TodoList } from '../../components';
+import { AddTodoForm } from '../../components/forms';
 import {
   StyledPage,
   StyledToDoContainer,

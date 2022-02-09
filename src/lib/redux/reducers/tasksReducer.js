@@ -22,7 +22,7 @@ export const tasksReducer = (state = initialState, action) => {
     case tasksTypes.DELETE_TASK:
       return {
         ...state,
-        task: null,
+        data: state.data.filter((task) => task.id !== action.payload),
       };
     case tasksTypes.SET_TASKS_ERROR:
       return {

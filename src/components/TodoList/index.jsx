@@ -37,7 +37,7 @@ export const TodoList = () => {
   };
 
   const onEdit = (taskText, taskId) => {
-    setEditingTaskId(editingTaskId === taskId ? null : taskId);
+    setEditingTaskId(taskId);
     setChangingTask(taskText);
   };
 
@@ -46,7 +46,7 @@ export const TodoList = () => {
   };
 
   return (
-    <div>
+    <>
       {
         tasks.map((task) => (
           <StyledTodo key={task.id}>
@@ -57,13 +57,19 @@ export const TodoList = () => {
               onChange={onTaskChange}
               border={editingTaskId === task.id}
               textDecoration={task.isFinished}
-              // onBlur={updateTask(task.id)}
+              onBlur={() => updateTask(task.id)}
             />
-            <StyledEditTodo src={editingTaskId === task.id ? done : edit} onClick={() => (editingTaskId === task.id ? updateTask(task.id) : onEdit(task.task, task.id))} alt="edit" />
-            <StyledDestroyTodo src={destroy} onClick={deleteTask(task.id)} alt="edit" />
+            <StyledEditTodo
+              src={editingTaskId === task.id ? done : edit}
+              onClick={() => (editingTaskId === task.id
+                ? updateTask(task.id)
+                : onEdit(task.task, task.id))}
+              alt="edit"
+            />
+            <StyledDestroyTodo src={destroy} onClick={() => deleteTask(task.id)} alt="edit" />
           </StyledTodo>
         ))
       }
-    </div>
+    </>
   );
 };

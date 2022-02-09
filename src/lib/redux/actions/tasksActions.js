@@ -18,9 +18,9 @@ export const tasksActions = Object.freeze({
     type: tasksTypes.FETCH_TASKS,
     payload: tasks,
   }),
-  deleteTask: (taskInfo) => ({
+  deleteTask: (taskId) => ({
     type: tasksTypes.DELETE_TASK,
-    payload: taskInfo,
+    payload: taskId,
   }),
   setFetchingError: (error) => ({
     type: tasksTypes.SET_TASKS_ERROR,
@@ -53,8 +53,9 @@ export const tasksActions = Object.freeze({
   deleteTaskAsync: (taskId) => async (dispatch) => {
     try {
       const response = await api.tasks.deleteTask(taskId);
-      // dispatch(tasksActions.fetchTasks(response.data));
-      console.log(response);
+      if (response.status === 200) {
+        dispatch(tasksActions.deleteTask(taskId));
+      }
     } catch (err) {
       dispatch(tasksActions.setFetchingError(err.message));
     }
