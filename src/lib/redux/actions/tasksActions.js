@@ -32,9 +32,7 @@ export const tasksActions = Object.freeze({
   },
   updateTaskAsync: (taskId, taskInfo) => async (dispatch) => {
     try {
-      console.log(taskInfo);
       const response = await api.tasks.updateTask(taskId, taskInfo);
-      console.log(response);
       dispatch(tasksActions.updateTask(response.data));
     } catch (err) {
       dispatch(tasksActions.setFetchingError(err.message));

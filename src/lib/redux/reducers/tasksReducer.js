@@ -33,6 +33,7 @@ export const tasksReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+
     case tasksTypes.FETCH_TASKS:
       return {
         ...state,

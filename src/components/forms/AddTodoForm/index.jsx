@@ -9,7 +9,6 @@ import {
 
 export const AddTodoForm = () => {
   const dispatch = useDispatch();
-
   const [taskInfo, setTaskInfo] = useState('');
 
   const onSubmit = (event) => {
