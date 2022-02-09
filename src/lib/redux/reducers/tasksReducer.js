@@ -2,6 +2,7 @@ import { tasksTypes } from '../types';
 
 const initialState = {
   data: [],
+  error: null,
 };
 
 export const tasksReducer = (state = initialState, action) => {
@@ -11,34 +12,32 @@ export const tasksReducer = (state = initialState, action) => {
       return {
         ...state,
         data: [...state.data, newTask],
+        error: null,
       };
     }
     case tasksTypes.UPDATE_TASK:
       return {
         ...state,
         data: state.data.map((task) => (task.id === action.payload.id
-          ? { ...task, task: action.payload.task } : task)),
+          ? action.payload : task)),
+        error: null,
       };
     case tasksTypes.DELETE_TASK:
       return {
         ...state,
         data: state.data.filter((task) => task.id !== action.payload),
+        error: null,
       };
     case tasksTypes.SET_TASKS_ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    case tasksTypes.TOGGLE_TASK:
-      return {
-        ...state,
-        data: state.data.map((task) => (task.id === action.payload
-          ? { ...task, isFinished: !task.isFinished } : task)),
-      };
     case tasksTypes.FETCH_TASKS:
       return {
         ...state,
         data: action.payload,
+        error: null,
       };
     default:
       return state;

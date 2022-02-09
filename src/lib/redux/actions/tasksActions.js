@@ -10,10 +10,6 @@ export const tasksActions = Object.freeze({
     type: tasksTypes.UPDATE_TASK,
     payload: taskInfo,
   }),
-  toggleTask: (taskInfo) => ({
-    type: tasksTypes.TOGGLE_TASK,
-    payload: taskInfo,
-  }),
   fetchTasks: (tasks) => ({
     type: tasksTypes.FETCH_TASKS,
     payload: tasks,
@@ -28,15 +24,17 @@ export const tasksActions = Object.freeze({
   }),
   createTaskAsync: (taskInfo) => async (dispatch) => {
     try {
-      const response = await api.tasks.createTask(taskInfo);
+      const response = await api.tasks.createTask({ task: taskInfo, isFinished: false });
       dispatch(tasksActions.createTask(response.data));
     } catch (err) {
       dispatch(tasksActions.setFetchingError(err.message));
     }
   },
-  updateTaskAsync: (taskId, taskText) => async (dispatch) => {
+  updateTaskAsync: (taskId, taskInfo) => async (dispatch) => {
     try {
-      const response = await api.tasks.updateTask(taskId, taskText);
+      console.log(taskInfo);
+      const response = await api.tasks.updateTask(taskId, taskInfo);
+      console.log(response);
       dispatch(tasksActions.updateTask(response.data));
     } catch (err) {
       dispatch(tasksActions.setFetchingError(err.message));
@@ -52,10 +50,8 @@ export const tasksActions = Object.freeze({
   },
   deleteTaskAsync: (taskId) => async (dispatch) => {
     try {
-      const response = await api.tasks.deleteTask(taskId);
-      if (response.status === 200) {
-        dispatch(tasksActions.deleteTask(taskId));
-      }
+      await api.tasks.deleteTask(taskId);
+      dispatch(tasksActions.deleteTask(taskId));
     } catch (err) {
       dispatch(tasksActions.setFetchingError(err.message));
     }

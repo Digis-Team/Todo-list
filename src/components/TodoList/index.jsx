@@ -23,16 +23,16 @@ export const TodoList = () => {
     dispatch(tasksActions.getTasksAsync());
   }, []);
 
-  const toggleTask = (taskId) => {
-    dispatch(tasksActions.toggleTask(taskId));
+  const toggleTask = (task) => {
+    dispatch(tasksActions.updateTaskAsync(task.id, { ...task, isFinished: !task.isFinished }));
   };
 
   const onTaskChange = (event) => {
     setChangingTask(event.target.value);
   };
 
-  const updateTask = (taskId) => {
-    dispatch(tasksActions.updateTaskAsync(taskId, changingTask));
+  const updateTask = (task) => {
+    dispatch(tasksActions.updateTaskAsync(task.id, { ...task, task: changingTask }));
     setEditingTaskId(null);
   };
 
@@ -50,19 +50,19 @@ export const TodoList = () => {
       {
         tasks.map((task) => (
           <StyledTodo key={task.id}>
-            <StyledCheckBox onClick={() => toggleTask(task.id)} />
+            <StyledCheckBox onClick={() => toggleTask(task)} />
             <StyledTask
               disabled={editingTaskId !== task.id}
               value={editingTaskId === task.id ? changingTask : task.task}
               onChange={onTaskChange}
               border={editingTaskId === task.id}
               textDecoration={task.isFinished}
-              onBlur={() => updateTask(task.id)}
+              onBlur={() => updateTask(task)}
             />
             <StyledEditTodo
               src={editingTaskId === task.id ? done : edit}
               onClick={() => (editingTaskId === task.id
-                ? updateTask(task.id)
+                ? updateTask(task)
                 : onEdit(task.task, task.id))}
               alt="edit"
             />
