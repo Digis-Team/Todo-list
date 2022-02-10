@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -12,34 +12,30 @@ import { selectError } from '../../../lib/redux/selectors';
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
-
+  const emailRef = React.createRef();
+  const passwordRef = React.createRef();
   const error = useSelector(selectError);
 
-  const [userInfo, setUserInfo] = useState({
-    email: '',
-    password: '',
-  });
-
-  const onChange = (event) => {
-    const { name, value } = event.target;
-    setUserInfo({ ...userInfo, [name]: value });
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(authActions.logInAsync(userInfo));
+    console.log(emailRef.current.value, passwordRef.current.value);
+    dispatch(authActions.logInAsync({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    }));
   };
 
   return (
     <StyledFormContainer>
       <h1>{LOG_IN_TITLE}</h1>
       <StyledForm>
-        <StyledInput placeholder="email" name="email" type="email" onChange={onChange} value={userInfo.email} />
-        <StyledInput placeholder="password" name="password" type="password" onChange={onChange} value={userInfo.password} />
+        <StyledInput placeholder="email" name="email" type="email" ref={emailRef} />
+        <StyledInput placeholder="password" name="password" type="password" ref={passwordRef} />
         <StyledError>{error}</StyledError>
         <StyledButton
           type="submit"
           onClick={handleSubmit}
-          disabled={!userInfo.email || !userInfo.password}
+          disabled={!emailRef || !passwordRef}
         >
           {LOG_IN_TITLE}
         </StyledButton>

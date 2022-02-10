@@ -30,6 +30,7 @@ export const authActions = Object.freeze({
   },
   logInAsync: (values) => async (dispatch) => {
     try {
+      console.log(values);
       const response = await api.auth.loginUser(values);
       const { data: { user: { id } } } = response;
       localStorage.setItem('id', id);
