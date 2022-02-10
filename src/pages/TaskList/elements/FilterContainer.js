@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledFilter = styled.div`
+export const StyledFilterContainer = styled.div`
   display: flex;
   justify-content: space-around;
 `;

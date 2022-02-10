@@ -9,7 +9,7 @@ import {
   StyledTask,
   StyledTodo,
   StyledCheckBox,
-  StyledFilter,
+  StyledFilterContainer,
   StyledButton,
 } from '../../pages/TaskList/elements';
 import { tasksActions } from '../../lib/redux/actions';
@@ -20,15 +20,12 @@ export const TodoList = () => {
   const dispatch = useDispatch();
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [changingTask, setChangingTask] = useState('');
-  const [selectedTasks, setSelectedTasks] = useState(tasks);
+  const FILTER_STATUSES = { ALL: 'All', ACTIVE: 'Active', FINISHED: 'Finished' };
+  const [filter, setFilter] = useState(FILTER_STATUSES.ALL);
 
   useEffect(() => {
     dispatch(tasksActions.getTasksAsync());
   }, []);
-
-  useEffect(() => {
-    setSelectedTasks(tasks);
-  }, [tasks]);
 
   const toggleTask = (task) => {
     dispatch(tasksActions.updateTaskAsync(task.id, { ...task, isFinished: !task.isFinished }));
@@ -51,20 +48,22 @@ export const TodoList = () => {
   const deleteTask = (taskId) => {
     dispatch(tasksActions.deleteTaskAsync(taskId));
   };
-  const selectNotFinishedTasks = () => {
-    setSelectedTasks(tasks.filter((task) => task.isFinished === false));
-  };
-  const selectFinishedTasks = () => {
-    setSelectedTasks(tasks.filter((task) => task.isFinished === true));
-  };
-  const selectAllTasks = () => {
-    setSelectedTasks(tasks);
-  };
 
   return (
     <>
       {
-        selectedTasks.map((task) => (
+        tasks.filter((task) => {
+          switch (filter) {
+            case FILTER_STATUSES.ACTIVE:
+              return !task.isFinished;
+            case FILTER_STATUSES.FINISHED:
+              return task.isFinished;
+            case FILTER_STATUSES.ALL:
+              return task;
+            default:
+              return task;
+          }
+        }).map((task) => (
           <StyledTodo key={task.id}>
             <StyledCheckBox onClick={() => toggleTask(task)} />
             <StyledTask
@@ -84,11 +83,11 @@ export const TodoList = () => {
           </StyledTodo>
         ))
       }
-      <StyledFilter>
-        <StyledButton onClick={() => selectAllTasks()}>All</StyledButton>
-        <StyledButton onClick={() => selectNotFinishedTasks()}>not Finished</StyledButton>
-        <StyledButton onClick={() => selectFinishedTasks()}>Finished</StyledButton>
-      </StyledFilter>
+      <StyledFilterContainer>
+        <StyledButton onClick={() => setFilter(FILTER_STATUSES.ALL)}>All</StyledButton>
+        <StyledButton onClick={() => setFilter(FILTER_STATUSES.ACTIVE)}>Active</StyledButton>
+        <StyledButton onClick={() => setFilter(FILTER_STATUSES.FINISHED)}>Finished</StyledButton>
+      </StyledFilterContainer>
     </>
   );
 };
