@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -12,8 +12,8 @@ import { selectError } from '../../../lib/redux/selectors';
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
-  const emailRef = React.createRef();
-  const passwordRef = React.createRef();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
   const error = useSelector(selectError);
 
   const handleSubmit = (e) => {
