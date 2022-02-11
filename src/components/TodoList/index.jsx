@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useTasks } from '../../hooks';
 import edit from '../../theme/assets/edit.png';
 import destroy from '../../theme/assets/destroy.png';
 import done from '../../theme/assets/done.png';
@@ -9,46 +9,28 @@ import {
   StyledTask,
   StyledTodo,
   StyledCheckBox,
+  StyledFilterContainer,
+  StyledButton,
 } from '../../pages/TaskList/elements';
-import { tasksActions } from '../../lib/redux/actions';
-import { selectTasks } from '../../lib/redux/selectors';
 
 export const TodoList = () => {
-  const tasks = useSelector(selectTasks);
-  const dispatch = useDispatch();
-  const [editingTaskId, setEditingTaskId] = useState(null);
-  const [changingTask, setChangingTask] = useState('');
-
-  useEffect(() => {
-    dispatch(tasksActions.getTasksAsync());
-  }, []);
-
-  const toggleTask = (task) => {
-    dispatch(tasksActions.updateTaskAsync(task.id, { ...task, isFinished: !task.isFinished }));
-  };
-
-  const onTaskChange = (event) => {
-    setChangingTask(event.target.value);
-  };
-
-  const updateTask = (task) => {
-    dispatch(tasksActions.updateTaskAsync(task.id, { ...task, task: changingTask }));
-    setEditingTaskId(null);
-  };
-
-  const onEdit = (taskText, taskId) => {
-    setEditingTaskId(taskId);
-    setChangingTask(taskText);
-  };
-
-  const deleteTask = (taskId) => {
-    dispatch(tasksActions.deleteTaskAsync(taskId));
-  };
+  const {
+    editingTaskId,
+    changingTask,
+    FILTER_STATUSES,
+    setFilter,
+    toggleTask,
+    onTaskChange,
+    updateTask,
+    onEdit,
+    deleteTask,
+    filterTasks,
+  } = useTasks();
 
   return (
     <>
       {
-        tasks.map((task) => (
+        filterTasks().map((task) => (
           <StyledTodo key={task.id}>
             <StyledCheckBox onClick={() => toggleTask(task)} />
             <StyledTask
@@ -56,7 +38,7 @@ export const TodoList = () => {
               value={editingTaskId === task.id ? changingTask : task.task}
               onChange={onTaskChange}
               border={editingTaskId === task.id}
-              textDecoration={task.isFinished}
+              textDecoration={task.isFinished ? 1 : 0}
             />
             <StyledEditTodo
               src={editingTaskId === task.id ? done : edit}
@@ -68,6 +50,11 @@ export const TodoList = () => {
           </StyledTodo>
         ))
       }
+      <StyledFilterContainer>
+        <StyledButton onClick={() => setFilter(FILTER_STATUSES.ALL)}>All</StyledButton>
+        <StyledButton onClick={() => setFilter(FILTER_STATUSES.ACTIVE)}>Active</StyledButton>
+        <StyledButton onClick={() => setFilter(FILTER_STATUSES.FINISHED)}>Finished</StyledButton>
+      </StyledFilterContainer>
     </>
   );
 };
