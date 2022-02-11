@@ -49,21 +49,21 @@ export const TodoList = () => {
     dispatch(tasksActions.deleteTaskAsync(taskId));
   };
 
+  const filterTasks = () => tasks.filter((task) => {
+    switch (filter) {
+      case FILTER_STATUSES.ACTIVE:
+        return !task.isFinished;
+      case FILTER_STATUSES.FINISHED:
+        return task.isFinished;
+      default:
+        return task;
+    }
+  });
+
   return (
     <>
       {
-        tasks.filter((task) => {
-          switch (filter) {
-            case FILTER_STATUSES.ACTIVE:
-              return !task.isFinished;
-            case FILTER_STATUSES.FINISHED:
-              return task.isFinished;
-            case FILTER_STATUSES.ALL:
-              return task;
-            default:
-              return task;
-          }
-        }).map((task) => (
+        filterTasks().map((task) => (
           <StyledTodo key={task.id}>
             <StyledCheckBox onClick={() => toggleTask(task)} />
             <StyledTask
